@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Welcome, to our Library.</h1>
+    <h4>Here are some beautifull books.</h4>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Cover Page</th>
+                    <th scope="col">Read Book</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in allBooks %}
+                    <tr>
+                        <th scope="col">{{i.book_category}}</th>
+                        <th scope="col">{{i.book_name}}</th>
+                        <th scope="col"><img src="/media/{{i.book_cover}}" alt="..." style="height: 100px; width: 100px;"></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}
