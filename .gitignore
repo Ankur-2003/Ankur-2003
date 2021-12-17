@@ -1,0 +1,7 @@
+libmanage/
+library_app/
+media/
+static/
+templates/
+db.sqlite3/
+manage.py
