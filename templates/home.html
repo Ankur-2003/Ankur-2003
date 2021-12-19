@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 
+{% block style %}
+    <style>
+        body{
+            background-color: rgb(21, 193, 236);
+        }
+        .container{
+            background-color: rgb(230, 33, 181);
+        }
+    </style>
+{% endblock style %}
+
 {% block body %}
-    <h1>Welcome, to our Library.</h1>
-    <h4>Here are some beautifull books.</h4>
+    <h1 class="text-center">Welcome, to our Library.</h1>
+    <h4 class="text-center">Here are some beautifull books.</h4>
 
     <div class="container">
         <table class="table">
