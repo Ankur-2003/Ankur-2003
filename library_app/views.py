@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import *
+from .forms import addBook
 
 # Create your views here.
 def signup(request):
@@ -45,3 +46,13 @@ def signout(request):
         logout(request)
         return redirect('/signin')
     return render(request, 'login.html')
+
+def add_book(request):
+    form = addBook()
+    if request.method == 'POST':
+        form = addBook(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/home')
+    context = {'form':form}
+    return render(request, 'addBook.html', context)
