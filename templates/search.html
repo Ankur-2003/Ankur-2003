@@ -3,17 +3,21 @@
 {% block style %}
     <style>
         .container{
-            background-color: rgb(33, 223, 230);
+            background-color: rgb(230, 33, 181);
         }
     </style>
 {% endblock style %}
-
 
 {% block body %}
     <h1 class="text-center">Welcome, to our Library.</h1>
     <h4 class="text-center">Here are some beautifull books.</h4>
 
     <div class="container">
+        {% if search_Books|length < 1 %}
+            <h2 class="text-center">No such result found</h2>
+        {% else %}
+            <h2 class="text-center">Here are some results related to {{query}}</h2>
+        {% endif %}
         <table class="table">
             <thead>
                 <tr>
@@ -24,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for i in allBooks %}
+                {% for i in search_Books %}
                     <tr>
                         <th scope="col">{{i.book_category}}</th>
                         <th scope="col">{{i.book_name}}</th>

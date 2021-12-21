@@ -1,3 +1,6 @@
+from django.contrib import messages
+from django.db.models import query
+from django.http.request import HttpRequest
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -56,3 +59,16 @@ def add_book(request):
             return redirect('/home')
     context = {'form':form}
     return render(request, 'addBook.html', context)
+
+def search(request):
+    query_name = request.GET["query"]
+
+    if len(query_name) > 50:
+        search_results = []
+    else:
+        search_Category = Books.objects.filter(book_category__contains=query_name)
+        search_Books = Books.objects.filter(book_name__icontains=query_name)
+        search_results = search_Books.union(search_Category)
+
+    context = {"search_Books" : search_results, "query":query_name}
+    return render(request, 'search.html', context)
